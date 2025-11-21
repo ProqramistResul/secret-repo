@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Princess & Prince Interaction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .character-img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+        }
+        #healthbar-container {
+            width: 300px;
+            height: 25px;
+            background: #ddd;
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 2px solid #aaa;
+        }
+        #healthbar {
+            height: 100%;
+            width: 100%;
+            background: #4caf50;
+            transition: width 0.3s ease;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            border: none;
+        }
+        .damage { background: #e74c3c; color: white; }
+        .heal { background: #2ecc71; color: white; }
+    </style>
+</head>
+<body>
+<h1>Pyenses ve pyens(pyenses yeni kanstitusiya uyguluyur VAY AMANNN)</h1>
+
+<div id="container">
+    <img id="princess" class="character-img" src="./images/princess.png" alt="Princess" />
+    <img id="prince" class="character-img" src="./images/prince.png" alt="Prince" />
+</div>
+
+<div id="healthbar-container">
+    <div id="healthbar">Sağlıq</div>
+</div>
+
+<div>
+    <button class="damage" onclick="changeHealth(-10, 'slap')">Sapalax (-10)</button>
+    <button class="damage" onclick="changeHealth(-15, 'hit')">Dis-dis (-15)</button>
+    <button class="heal" onclick="changeHealth(10, 'hug')">Sayilmak (+10)</button>
+    <button class="heal" onclick="changeHealth(20, 'kiss')">Maç (+20)</button>
+</div>
+
+<audio id="sound-slap" src="slap.mp3"></audio>
+<audio id="sound-hit" src="hit.mp3"></audio>
+<audio id="sound-hug" src="hug.mp3"></audio>
+<audio id="sound-kiss" src="kiss.mp3"></audio>
+
+<script>
+    let health = 100;
+
+    function playSound(type) {
+        const audio = document.getElementById(`sound-${type}`);
+        if (audio) audio.play();
+    }
+
+    function changeHealth(amount, type) {
+        playSound(type);
+        health = Math.max(0, Math.min(100, health + amount));
+        document.getElementById("healthbar").style.width = health + "%";
+    }
+</script>
+</body>
+</html>
